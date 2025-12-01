@@ -68,8 +68,8 @@
         investmentPercentage: ''
       })));
 
-      // IMPORTANT: Replace this with your actual Google Apps Script Web App URL
-      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxK7ZprVPDL2_b7crTD1CAdxL-1fSTHp1EnZc7553enhbv6R516jdlGJD4hZl_WRcV-/exec';
+      // UPDATED: New Google Apps Script Web App URL
+      const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_S3CyKNVzeBeAa3tgqD3n7TiSDUCxI0AfhM5bUaZT9vZ2bQDe8dbhJXPgTbQjdsuj/exec';
 
       const assessmentCategories = {
         'Credibility': 'Appeals based on source expertise, trustworthiness, and authority',
@@ -91,7 +91,7 @@
         '4': 'Highly effective'
       };
 
-      // Load pitch content from GitHub Pages data directory or API
+      // Load pitch content from GitHub Pages data directory
       const loadPitchContent = useCallback(async (pitchIds) => {
         const contents = [];
         for (const pitchId of pitchIds) {
@@ -277,12 +277,12 @@
             
             return true;
           } else {
-            setStatus({ type: 'error', message: result.message || 'Thank You for your submission!' });
+            setStatus({ type: 'error', message: result.message || 'Submission failed. Please try again.' });
             return false;
           }
         } catch (error) {
           console.error('Submission error:', error);
-          setStatus({ type: 'error', message: `Thank You for your submission!: ${error.message}.` });
+          setStatus({ type: 'error', message: `Submission failed: ${error.message}. Please try again.` });
           return false;
         } finally {
           setIsSubmitting(false);
@@ -494,8 +494,6 @@
               <p className="text-gray-700 text-lg leading-relaxed mb-4">
                 {currentPitch.description || 'Loading pitch description...'}
               </p>
-              
-              
               
               {/* Investment Percentage Selection */}
               {currentPitch.loanAmount && (
